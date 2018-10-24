@@ -1,12 +1,12 @@
 'use strict';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || "EAACUshJyvdIBAOxSiYcAlZAEC3qubJTvtpmONJLsLxwVjys5hJU5ujNw7mF15mtFT7hhTUftCnL0eRynoT28VVAZAMZAcvZBYlHjYzLkT1GXrFZCx6H067NREr5IXW0p4bSMEYo9WZCvZAZAEEFzX7sZCXBgZCEHrnZBIA5wVoZBZBHEyZCgZDZD";
-const APIAI_TOKEN = process.env.APIAI_TOKEN;
-const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+//const APIAI_TOKEN = process.env.APIAI_TOKEN;
+//const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const apiai = require('apiai');
+//const apiai = require('apiai');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,7 +16,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 
-const apiaiApp = apiai(APIAI_TOKEN);
+//const apiaiApp = apiai(APIAI_TOKEN);
 
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
@@ -46,31 +46,32 @@ app.post('/webhook', (req, res) => {
 function receivedMessage(event) {
   let sender = event.sender.id;
   let text = event.message.text;
+  return text;
 
-  let apiai = apiaiApp.textRequest(text, {
-    sessionId: 'tabby_cat'
-  });
+  // let apiai = apiaiApp.textRequest(text, {
+  //   sessionId: 'tabby_cat'
+  // });
 
-  apiai.on('response', (response) => {
-    let aiText = response.result.fulfillment.speech;
-    console.log(aiText);
-
-    switch (aiText) {
-      case 'SHOW_BIOGRAPHY':
-        prepareSendBio(sender);
-        break;
-
-      default:
-        prepareSendAiMessage(sender, aiText);
-    }
-
-  });
-
-  apiai.on('error', (error) => {
-    console.log(error);
-  });
-
-  apiai.end();
+  // apiai.on('response', (response) => {
+  //   let aiText = response.result.fulfillment.speech;
+  //   console.log(aiText);
+  //
+  //   switch (aiText) {
+  //     case 'SHOW_BIOGRAPHY':
+  //       prepareSendBio(sender);
+  //       break;
+  //
+  //     default:
+  //       prepareSendAiMessage(sender, aiText);
+  //   }
+  //
+  // });
+  //
+  // apiai.on('error', (error) => {
+  //   console.log(error);
+  // });
+  //
+  // apiai.end();
 }
 
 function sendMessage(messageData) {
