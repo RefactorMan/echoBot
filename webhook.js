@@ -60,7 +60,7 @@ function receivedMessage(event) {
         if (!json.success) {
             console.log('Error getting all memes: ', json);
         } else {
-            let meme = json.data.memes[0];
+            let meme = json.data.memes[Math.floor(Math.random()*json.data.memes.length)];
             request({
                 url: 'https://api.imgflip.com/caption_image',
                 method: 'POST',
