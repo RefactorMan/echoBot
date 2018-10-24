@@ -71,7 +71,7 @@ function receivedMessage(event) {
                     return;
                 }
                 //console.log('I is 2: ', response2.body);
-                let json2 = response2.body;
+                let json2 = JSON.parse(response2.body);
                 if (!json2.success) {
                     console.log('Error get meme: ', text, ' and ', json2);
                 } else {
