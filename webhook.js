@@ -55,6 +55,7 @@ function receivedMessage(event) {
             console.log('Error sending get all memes: ', error);
             return;
         }
+        console.log('I is: ', response.body);
         let json = JSON.parse(response.body);
         if (!json.success) {
             console.log('Error getting all memes: ', json);
@@ -69,6 +70,7 @@ function receivedMessage(event) {
                     console.log('Error sending get meme: ', error2);
                     return;
                 }
+                console.log('I is 2: ', response2.body);
                 let json2 = JSON.parse(response2.body);
                 if (!json2.success) {
                     console.log('Error get meme: ', json2);
