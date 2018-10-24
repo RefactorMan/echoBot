@@ -52,22 +52,28 @@ function receivedMessage(event) {
         method: 'GET',
     }, (error, response) => {
         if (error) {
-            console.log('Error sending message: ', error);
-        } else if (!response.body.success) {
-            console.log('Error: ', response);
+            console.log('Error sending get all memes: ', error);
+            return;
+        }
+        let json = JSON.parse(response.body);
+        if (!json.success) {
+            console.log('Error getting all memes: ', json);
         } else {
-            let meme = response.body.data.memes[0];
+            let meme = json.data.memes[0];
             request({
                 url: 'https://api.imgflip.com/caption_image',
                 method: 'POST',
                 json: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: text, text1: 'fucker'}
-            }, (error, response) => {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                } else if (!response.body.success) {
-                    console.log('Error: ', response);
+            }, (error2, response2) => {
+                if (error2) {
+                    console.log('Error sending get meme: ', error2);
+                    return;
+                }
+                let json2 = JSON.parse(response2.body);
+                if (!json2.success) {
+                    console.log('Error get meme: ', json2);
                 } else {
-                    let url = response.body.data.url;
+                    let url = json2.data.url;
                     prepareSendAiMessage(sender, url);
                 }
             });
