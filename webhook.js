@@ -46,7 +46,34 @@ app.post('/webhook', (req, res) => {
 function receivedMessage(event) {
     let sender = event.sender.id;
     let text = event.message.text;
-    prepareSendAiMessage(sender, text);
+
+    request({
+        url: 'https://api.imgflip.com/get_memes',
+        method: 'GET',
+    }, (error, response) => {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (!response.success) {
+            console.log('Error: ', response);
+        } else {
+            let meme = response.data.memes[0];
+            request({
+                url: 'https://api.imgflip.com/caption_image',
+                method: 'POST',
+                json: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: text, text1: 'fucker'}
+            }, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                } else if (!response.success) {
+                    console.log('Error: ', response);
+                } else {
+                    let url = response.data.url;
+                    prepareSendAiMessage(sender, url);
+                }
+            });
+        }
+    });
+    //
 
     // let apiai = apiaiApp.textRequest(text, {
     //   sessionId: 'tabby_cat'
