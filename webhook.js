@@ -64,7 +64,7 @@ function receivedMessage(event) {
             request({
                 url: 'https://api.imgflip.com/caption_image',
                 method: 'POST',
-                formData: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: 'mother', text1: 'fucker'}
+                formData: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: text}
             }, (error2, response2) => {
                 if (error2) {
                     console.log('Error sending get meme: ', error2);
