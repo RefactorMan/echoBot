@@ -53,10 +53,10 @@ function receivedMessage(event) {
     }, (error, response) => {
         if (error) {
             console.log('Error sending message: ', error);
-        } else if (!response.success) {
+        } else if (!response.body.success) {
             console.log('Error: ', response);
         } else {
-            let meme = response.data.memes[0];
+            let meme = response.body.data.memes[0];
             request({
                 url: 'https://api.imgflip.com/caption_image',
                 method: 'POST',
@@ -64,10 +64,10 @@ function receivedMessage(event) {
             }, (error, response) => {
                 if (error) {
                     console.log('Error sending message: ', error);
-                } else if (!response.success) {
+                } else if (!response.body.success) {
                     console.log('Error: ', response);
                 } else {
-                    let url = response.data.url;
+                    let url = response.body.data.url;
                     prepareSendAiMessage(sender, url);
                 }
             });
