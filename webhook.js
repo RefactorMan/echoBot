@@ -20,7 +20,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 /* For Facebook Validation */
 app.get('/webhook', (req, res) => {
-  if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'tuxedo_cat') {
+  if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'AlonTheKing') {
     res.status(200).send(req.query['hub.challenge']);
   } else {
     res.status(403).end();
