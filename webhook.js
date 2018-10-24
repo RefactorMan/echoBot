@@ -55,7 +55,7 @@ function receivedMessage(event) {
             console.log('Error sending get all memes: ', error);
             return;
         }
-        console.log('I is: ', response.body);
+        // console.log('I is: ', response.body);
         let json = JSON.parse(response.body);
         if (!json.success) {
             console.log('Error getting all memes: ', json);
@@ -64,7 +64,7 @@ function receivedMessage(event) {
             request({
                 url: 'https://api.imgflip.com/caption_image',
                 method: 'POST',
-                json: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: 'mother', text1: 'fucker'}
+                formData: {template_id: meme.id, username: 'razbensimon', password: 'FIzA2qa4s3HE', text0: 'mother', text1: 'fucker'}
             }, (error2, response2) => {
                 if (error2) {
                     console.log('Error sending get meme: ', error2);
