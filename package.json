@@ -18,12 +18,21 @@
     "facebook",
     "messenger"
   ],
-  "author": "Tomomi ❤️ Imura",
+  "author": "swift",
   "license": "MIT",
   "dependencies": {
     "apiai": "^3.0.3",
+    "async-request": "^1.2.0",
     "body-parser": "^1.15.2",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.14.0",
+    "node-fetch": "^2.3.0",
     "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.10",
+    "@types/node-fetch": "^2.1.4",
+    "@types/request": "^2.48.1",
+    "typescript": "^3.1.6"
   }
 }

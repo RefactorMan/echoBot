@@ -2,3 +2,8 @@
 .DS_Store
 node_modules
 npm-debug.log
+
+\.idea/
+/getData/*.js
+/getData/*.map
+yarn-error\.log
